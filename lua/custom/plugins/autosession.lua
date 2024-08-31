@@ -1,4 +1,4 @@
--- https://github.com/rmagatti/auto-session
+-- NOTE: https://github.com/rmagatti/auto-session
 return {
   'rmagatti/auto-session',
   lazy = false,

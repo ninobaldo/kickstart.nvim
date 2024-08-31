@@ -182,20 +182,53 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- Centraliza
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll [D]own and centralize' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll [U]p and centralize' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Search [N]ext and centralize' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Search Previous and centralize' })
+
+-- NOTE: Navegação
+--
+-- Keybinds to make split navigation easier.
+--  Use CTRL+<hjkl> to switch between windows
+--
+--  See `:help wincmd` for a list of all window commands
+-- vim.keymap.set('n', '<C-h>', '<C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', { desc = 'Move focus to the upper window' })
+
+-- vim.keymap.set('n', '<leader>p', ':bp', 'Move Previous to Buffer')
+-- vim.keymap.set('n', '<leader>n', ':bn', 'Move Next to Buffer')
+-- buffers
+
+-- vim.keymap.set('n', '<C-l>', ':blast<enter>', { noremap = false })
+-- vim.keymap.set('n', '<C-h>', ':bfirst<enter>', { noremap = false })
+-- vim.keymap.set('n', '<C-j>', ':bprev<enter>', { noremap = false })
+-- vim.keymap.set('n', '<C-k>', ':bnext<enter>', { noremap = false })
+-- TODO: vim.keymap.set('n', '<C-d>', ':bdelete<enter>', { noremap = false }) -- eh o mesmo do down
+
+-- TODO: comments
+-- https://vi.stackexchange.com/questions/2089/what-are-the-differences-between-the-map-noremap-abbrev-and-noreabbrev-command
+-- https://vi.stackexchange.com/questions/39337/unable-to-map-c-in-visual-mode-with-neovim-and-kitty
+-- vim.keymap.set('n', '<C-/>', 'gcc', { remap = true })
+-- vim.keymap.set('i', '<C-z>', '<Esc>:Commentary<CR>')
+-- vim.keymap.set('n', '<C-/>', 'gcc', { remap = true, noremap = false })
+-- vim.keymap.set('v', '<C-/>', 'gc', { remap = true })
+-- vim.keymap.set('n', '<A-d>', 'mciw*<Cmd>nohl<CR>', { remap = false })
+
+-- vim.keymap.set('n', '<C-/>', 'gcc', { noremap = false })
+--
+--
+--
+
+vim.keymap.set('n', '<leader>z', ':%s/<C-R><C-W>/', { noremap = false })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -854,7 +887,7 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = true } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
